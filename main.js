@@ -48,9 +48,24 @@ $(document).ready(function() {
         var wg = $(w);
         $.get('http://api.vote2014.g0v.ronny.tw/api/data/TC' + wg.data('code') + '000000', function(data) {
           $.each(data.rows, function(i, d) {
-            var candidate = $(wg.find('.candidate')[i]);
-            candidate.find('.amount').text(d['候選人得票數']);
+            var candidate = $(wg.find('.candidate[data-no="' + (i + 1) + '"]'));
+            candidate.find('.amount').data('amount', d['候選人得票數']).text(d['候選人得票數']);
             candidate.find('.ratio').text(d['得票率'] + '%');
+          });
+          var sorted_candidates = wg.find('.candidate').sort(function(a, b) {
+            var a_amount = $(a).find('.amount').data('amount');
+            var b_amount = $(b).find('.amount').data('amount');
+            if (a_amount > b_amount) {
+              return -1;
+            } else if (a_amount < b_amount) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+          wg.find('.candidate').detach();
+          $.each(sorted_candidates, function(i, c) {
+            wg.append(c);
           });
         });
       });
@@ -75,7 +90,7 @@ $(document).ready(function() {
         $.get('http://api.vote2014.g0v.ronny.tw/api/candidate/TC' + wg.data('code') + '000000', function(res) {
           $.each(res, function(i, r) {
             var candidate = $('<div></div>').addClass('candidate');
-            candidate.append($('<span></span>').addClass('no').text(r['號次']));
+            candidate.append($('<span></span>').addClass('no').text(r['號次'])).attr('data-no', r['號次']);
             candidate.append($('<span></span>').addClass('name').text(r['姓名']));
             candidate.append($('<span></span>').addClass('amount pull-right'));
             candidate.append($('<span></span>').addClass('ratio pull-right'));
