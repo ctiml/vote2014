@@ -43,6 +43,11 @@ $(document).ready(function() {
 
   var WidgetManager = WidgetManager || (function() {
     var mWidgets = [];
+    var saveToLocal = function() {
+      if (localStorage) {
+        localStorage.counties = JSON.stringify(mWidgets);
+      }
+    }
     var refresh = function() {
       $('.widget').each(function(i, w) {
         var wg = $(w);
@@ -99,15 +104,30 @@ $(document).ready(function() {
         });
       });
       refresh();
+      saveToLocal();
+    }
+    var add = function(id) {
+      mWidgets.push(id);
+      mWidgets = mWidgets.filter(onlyUnique);
+      render();
+    }
+    var loadFromLocal = function() {
+      if (localStorage) {
+        if (localStorage.counties && Array.isArray(JSON.parse(localStorage.counties))) {
+          var counties = JSON.parse(localStorage.counties);
+          $.each(counties, function(i, county) {
+            $('.county[data-code="' + county + '"]').addClass('active');
+            add(county);
+          });
+        }
+      }
     }
     var onlyUnique = function(value, index, self) { 
         return self.indexOf(value) === index;
     }
     return {
-      add: function(id, name) {
-        mWidgets.push(id);
-        mWidgets = mWidgets.filter(onlyUnique);
-        render();
+      add: function(id) {
+        add(id);
       },
       remove: function(id) {
         var index = mWidgets.indexOf(id);
@@ -119,6 +139,9 @@ $(document).ready(function() {
       },
       refresh: function() {
         refresh();
+      },
+      load: function() {
+        loadFromLocal();
       },
       ids: function() {
         console.log(mWidgets);
@@ -132,7 +155,8 @@ $(document).ready(function() {
       var li = $('.county-template').clone();
       li.removeClass('county-template');
       var code = res[i][0] + res[i][1];
-      li.find('a').data('code', code).text(res[i][2]);
+      li.attr('data-code', code);
+      li.find('a').text(res[i][2]);
       ul.append(li);
       mapping[code] = res[i][2];
     }
@@ -141,15 +165,16 @@ $(document).ready(function() {
       e.preventDefault();
       if ($(this).hasClass('active')) {
         $(this).removeClass('active');
-        WidgetManager.remove($(this).find('a').data('code'));
+        WidgetManager.remove($(this).data('code'));
       } else {
         $(this).addClass('active');
-        WidgetManager.add($(this).find('a').data('code'));
+        WidgetManager.add($(this).data('code'));
       }
     });
+    WidgetManager.load();
+    Timer.register(WidgetManager.refresh);
+    Timer.start();
   });
 
-  Timer.register(WidgetManager.refresh);
-  Timer.start();
   window.WidgetManager = WidgetManager;
 });
