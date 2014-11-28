@@ -54,12 +54,13 @@ $(document).ready(function() {
         $.get('http://api.vote2014.g0v.ronny.tw/api/data/TC' + wg.data('code') + '000000', function(data) {
           $.each(data.rows, function(i, d) {
             var candidate = $(wg.find('.candidate[data-no="' + (i + 1) + '"]'));
-            candidate.find('.amount').data('amount', d['候選人得票數']).text(d['候選人得票數']);
+            candidate.data('amount', d['候選人得票數']);
+            candidate.find('.amount').text(d['候選人得票數']);
             candidate.find('.ratio').text(d['得票率'] + '%');
           });
           var sorted_candidates = wg.find('.candidate').sort(function(a, b) {
-            var a_amount = $(a).find('.amount').data('amount');
-            var b_amount = $(b).find('.amount').data('amount');
+            var a_amount = $(a).data('amount');
+            var b_amount = $(b).data('amount');
             if (a_amount > b_amount) {
               return -1;
             } else if (a_amount < b_amount) {
