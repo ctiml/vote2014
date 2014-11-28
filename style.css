@@ -10,7 +10,7 @@ div.widget {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  background-color: #d1dff9;
+  background-color: #DADFE8;
 }
 
 .title {
@@ -23,7 +23,7 @@ div.widget {
 .delivery {
   text-align: center;
   font-size: 18px;
-  color: #226a96;
+  color: #12405C;
   margin-bottom: 5px;
 }
 .candidate {
