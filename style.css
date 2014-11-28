@@ -33,7 +33,10 @@ div.widget {
   padding: 2px;
   border-top: 1px dashed #fff;
 }
-
+.win {
+  border: 2px solid #f00;
+  font-weight: bold;
+}
 .no {
   margin: 0 10px;
 }

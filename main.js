@@ -57,6 +57,9 @@ $(document).ready(function() {
             candidate.data('amount', d['候選人得票數']);
             candidate.find('.amount').text(d['候選人得票數']);
             candidate.find('.ratio').text(d['得票率'] + '%');
+            if (d['當選註記'] == "*") {
+              candidate.addClass('win');
+            }
           });
           wg.find('.delivery .delivery-count').text(data['已送投開票所數'] + ' / ' + data['應送投開票所數']);
           var sorted_candidates = wg.find('.candidate').sort(function(a, b) {
