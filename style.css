@@ -22,9 +22,12 @@ div.widget {
 }
 .delivery {
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   color: #12405C;
   margin-bottom: 5px;
+}
+.delivery .delivery-count {
+  font-size: 18px;
 }
 .candidate {
   padding: 2px;

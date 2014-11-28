@@ -58,7 +58,7 @@ $(document).ready(function() {
             candidate.find('.amount').text(d['候選人得票數']);
             candidate.find('.ratio').text(d['得票率'] + '%');
           });
-          wg.find('.delivery').text(data['已送投開票所數'] + ' / ' + data['應送投開票所數']);
+          wg.find('.delivery .delivery-count').text(data['已送投開票所數'] + ' / ' + data['應送投開票所數']);
           var sorted_candidates = wg.find('.candidate').sort(function(a, b) {
             var a_amount = $(a).data('amount');
             var b_amount = $(b).data('amount');
@@ -94,7 +94,10 @@ $(document).ready(function() {
       $('.widget').each(function(i, w) {
         var wg = $(w);
         wg.append($('<div></div>').addClass('title').text(mapping[wg.data('code')]));
-        wg.append($('<div></div>').addClass('delivery').text('0 / 0'));
+        var delivery = $('<div></div>').addClass('delivery');
+        delivery.append($('<span></span>').text('開票所數：'));
+        delivery.append($('<span></span>').addClass('delivery-count').text('0 / 0'));
+        wg.append(delivery);
         $.get('http://api.vote2014.g0v.ronny.tw/api/candidate/TC' + wg.data('code') + '000000', function(res) {
           $.each(res, function(i, r) {
             var candidate = $('<div></div>').addClass('candidate');
