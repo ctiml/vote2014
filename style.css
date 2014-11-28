@@ -18,8 +18,13 @@ div.widget {
   font-weight: bold;
   font-size: 20px;
   color: #337ab7;
-  margin-bottom: 5px;
   text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+}
+.delivery {
+  text-align: center;
+  font-size: 18px;
+  color: #226a96;
+  margin-bottom: 5px;
 }
 .candidate {
   padding: 2px;
@@ -38,6 +43,7 @@ div.widget {
 }
 .amount {
   margin: 0 10px;
+  font-size: 16px;
 }
 
 li.county-template {
