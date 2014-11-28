@@ -4,13 +4,13 @@ div.row {
 }
 
 div.widget {
-  border: 2px solid #fff;
+  border: 5px solid #fff;
   padding: 5px;
   margin: 0;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  background-color: #f6faff;
+  background-color: #effaff;
 }
 
 .title {
