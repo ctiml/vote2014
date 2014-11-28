@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var Timer = Timer || (function(){
-    var _period = 1 * 10 * 1000;
+    var _period = 1 * 30 * 1000;
     var _timer;
     var _is_running = false;
     var _callbacks = [];
