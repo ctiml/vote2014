@@ -10,7 +10,7 @@ div.widget {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  background-color: #effaff;
+  background-color: #cfdfff;
 }
 
 .title {
@@ -18,10 +18,11 @@ div.widget {
   font-weight: bold;
   font-size: 18px;
   color: #337ab7;
+  margin-bottom: 5px;
 }
 .candidate {
   padding: 2px;
-  border-bottom: 1px dashed #fff;
+  border-top: 1px dashed #fff;
 }
 
 .name {
