@@ -75,6 +75,7 @@ $(document).ready(function() {
         $.get('http://api.vote2014.g0v.ronny.tw/api/candidate/TC' + wg.data('code') + '000000', function(res) {
           $.each(res, function(i, r) {
             var candidate = $('<div></div>').addClass('candidate');
+            candidate.append($('<span></span>').addClass('no').text(r['號次']));
             candidate.append($('<span></span>').addClass('name').text(r['姓名']));
             candidate.append($('<span></span>').addClass('amount pull-right'));
             candidate.append($('<span></span>').addClass('ratio pull-right'));
