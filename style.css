@@ -3,6 +3,10 @@ div.row {
   margin: 0;
 }
 
+#widget-container {
+  margin-bottom: 30px;
+  margin-top: -10px;
+}
 div.widget {
   border: 5px solid #fff;
   padding: 5px;
@@ -53,5 +57,23 @@ div.widget {
 }
 
 li.county-template {
-    display: none;
+  display: none;
+}
+.fixed-bottom {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin-bottom: 0;
+  z-index: 7;
+  padding-top: 2px;
+  padding-right: 10px;
+  text-align: right;
+  font-size: 13px;
+  color: #777;
+  background-color: #f8f8f8;
+  border: 1px solid #e7e7e7;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }

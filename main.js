@@ -48,6 +48,13 @@ $(document).ready(function() {
         localStorage.counties = JSON.stringify(mWidgets);
       }
     }
+    var now = function() {
+      var d = new Date();
+      var date = [d.getFullYear(), (d.getMonth()+1), d.getDate()].join('/');
+      var time = [d.getHours(), d.getMinutes(), d.getSeconds()].join(':');
+      time = time.replace(/^(\d):/, '0$1:').replace(/:(\d):/g, ':0$1:').replace(/:(\d)$/, ':0$1');
+      return date + ' ' + time;
+    }
     var refresh = function() {
       $('.widget').each(function(i, w) {
         var wg = $(w);
@@ -77,6 +84,7 @@ $(document).ready(function() {
           $.each(sorted_candidates, function(i, c) {
             wg.append(c);
           });
+          $('.updated-at').text(now());
         });
       });
     }
