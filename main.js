@@ -50,10 +50,9 @@ $(document).ready(function() {
     }
     var now = function() {
       var d = new Date();
-      var date = [d.getFullYear(), (d.getMonth()+1), d.getDate()].join('/');
       var time = [d.getHours(), d.getMinutes(), d.getSeconds()].join(':');
       time = time.replace(/^(\d):/, '0$1:').replace(/:(\d):/g, ':0$1:').replace(/:(\d)$/, ':0$1');
-      return date + ' ' + time;
+      return time;
     }
     var refresh = function() {
       $('.widget').each(function(i, w) {
@@ -84,7 +83,8 @@ $(document).ready(function() {
           $.each(sorted_candidates, function(i, c) {
             wg.append(c);
           });
-          $('.updated-at').text(now());
+          var now_time = now();
+          $('.updated-at').text('2014/11/29 ' + now_time);
         });
       });
     }
